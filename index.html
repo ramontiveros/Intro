@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="todoApp">
+  <head>
+    <title>AngularJS</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="pendientes.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="estilo.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div ng-controller="PendientesController as pendList">
+      <h1>Tareas pendientes <span class="badge">{{pendList.pending()}}</span> de <span class="badge">{{pendList.pendientes.length}}</span></h1>
+      <ul class="list-group">
+	<li ng-repeat="tarea in pendList.pendientes" class="list-group-item done-{{tarea.done}}">
+	  <input type="checkbox" ng-model="tarea.done" />
+	  <span>{{tarea.descripcion}}</span>
+	</li>	  
+      </ul>
+      <form ng-submit="pendList.addTodo()">
+	<input type="text" class="form-control" ng-model="pendList.newPend"/>
+	<input type="submit" class="btn btn-primary" />
+      </form>
+    </div>
+  </body>
+</html>
